@@ -12,6 +12,8 @@ import java.util.*
 @Repository
 @Transactional
 interface OwnerRepository : JpaRepository<Owner, String> {
+  @Query("SELECT o FROM Owner o WHERE o.id=:id")
+  fun findOwnerById(@Param("id") id: String): Optional<Owner>
   @Modifying
   @Query("DELETE FROM Owner o WHERE o.id=:id")
   fun deleteByOwnerId(@Param("id") id: String): Optional<Void>

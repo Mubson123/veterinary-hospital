@@ -19,25 +19,21 @@ open class Animal (
   @GenericGenerator(name = "system-uuid", strategy = "uuid")
   open var id: String? = null,
   @Column
-  open var name: String,
+  open var name: String? = null,
   @Column
-  open var race: String,
+  open var race: String? = null,
   @Column
   open var type: String? = null,
   @Column
-  open var gender: Gender,
+  open var gender: Gender? = null,
   @Column
-  open var color: String,
+  open var color: String? = null,
   @Column
   open var symptoms: String? = null,
   @Column
-  open var birthdate: LocalDate,
+  open var birthdate: LocalDate? = null,
   @ManyToMany(fetch = FetchType.LAZY, cascade = [CascadeType.PERSIST, CascadeType.MERGE])
-  @JoinTable(
-    name = "animal_owner",
-    joinColumns = [JoinColumn(name = "animal_id", referencedColumnName = "owner_id")]
-  )
-  open var ownerSet: MutableSet<Owner>? = null,
+  open var ownerSet: MutableSet<Owner>? = mutableSetOf(),
 ) {
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
   open var lastRegistration: Date = Date()

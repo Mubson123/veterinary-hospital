@@ -18,13 +18,13 @@ open class Owner (
   @GenericGenerator(name = "system-uuid", strategy = "uuid")
   open var id: String? = null,
   @Column
-  open var gender: Gender,
+  open var gender: Gender? = null,
   @Column
-  open var lastname: String,
+  open var lastname: String? = null,
   @Column
   open var firstname: String? = null,
   @Column
-  open var birthdate: LocalDate,
+  open var birthdate: LocalDate? = null,
   ) {
 
   @ManyToMany(mappedBy = "ownerSet", fetch = FetchType.LAZY,

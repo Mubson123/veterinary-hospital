@@ -16,11 +16,11 @@ open class Address (
   @GenericGenerator(name = "system-uuid", strategy = "uuid")
   open var id: String? = null,
   @Column
-  open var streetAndHouseNumber: String,
+  open var streetAndHouseNumber: String? = null,
   @Column
-  open var postalCode: String,
+  open var postalCode: String? = null,
   @Column
-  open var city: String,
+  open var city: String? = null,
   @OneToOne(cascade = [CascadeType.ALL])
-  open var owner: Owner?,
+  open var owner: Owner? = null,
 )
