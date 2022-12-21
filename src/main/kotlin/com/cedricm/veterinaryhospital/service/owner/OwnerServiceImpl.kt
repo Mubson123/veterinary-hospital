@@ -25,17 +25,15 @@ class OwnerServiceImpl: OwnerService {
     return ownerRepository.findAll()
   }
 
-  override fun findOwnersByAnimalId(id: String): List<Owner> {
-    return animalRepository.findOwnersByAnimalId(id).orElseThrow()
-  }
-
   override fun addOwner(ownerDto: OwnerDto): Owner {
     val owner = ownerMapper.toOwner(ownerDto)
     return ownerRepository.save(owner)
   }
 
   override fun updateOwner(id: String, ownerDto: OwnerDto): Owner {
-    val owner = ownerRepository.findById(id).orElseThrow()
+    val owner = ownerRepository
+      .findOwnerById(id)
+      .orElseThrow{ RuntimeException("Can not be updated") }
     owner.gender = ownerDto.gender
     owner.lastname = ownerDto.lastname
     owner.firstname = ownerDto.firstname
@@ -44,13 +42,10 @@ class OwnerServiceImpl: OwnerService {
   }
 
   override fun deleteOwner(id: String) {
-    val owner = ownerRepository.findById(id).orElseThrow()
+    val owner = ownerRepository
+      .findOwnerById(id)
+      .orElseThrow{ RuntimeException("Can not be deleted") }
     addressRepository.deleteByOwner(owner)
     ownerRepository.deleteByOwnerId(id)
-  }
-
-  override fun deleteAllAnimals(id: String) {
-    val owner = ownerRepository.findById(id).orElseThrow()
-    animalRepository.deleteByOwner(owner)
   }
 }
