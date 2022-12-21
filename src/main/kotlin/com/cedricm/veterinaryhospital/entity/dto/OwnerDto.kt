@@ -6,7 +6,7 @@ class OwnerDto (
   var gender: Gender,
   var lastname: String,
   var firstname: String? = null,
-  var day: Short,
-  var month: Short,
-  var years: Short,
+  var day: Int,
+  var month: Int,
+  var year: Int,
 )

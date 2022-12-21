@@ -38,7 +38,7 @@ open class Animal (
     name = "animal_owner",
     joinColumns = [JoinColumn(name = "animal_id", referencedColumnName = "owner_id")]
   )
-  open var owner: MutableSet<Owner> = mutableSetOf()
+  open var owner: MutableSet<Owner>? = null,
 ) {
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
   open var lastRegistration: Date = Date()

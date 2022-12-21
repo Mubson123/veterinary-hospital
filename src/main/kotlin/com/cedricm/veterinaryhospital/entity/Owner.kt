@@ -30,7 +30,7 @@ open class Owner (
   @ManyToMany(mappedBy = "owner", fetch = FetchType.LAZY,
     cascade = [CascadeType.PERSIST, CascadeType.MERGE])
   @JsonIgnore
-  open var animalSet: MutableSet<Animal> = mutableSetOf()
+  open var animalSet: MutableSet<Animal>? = null
 
   @OneToOne(mappedBy = "owner", cascade = [CascadeType.ALL])
   @JsonIgnore
