@@ -27,7 +27,7 @@ open class Owner (
   open var birthdate: LocalDate,
   ) {
 
-  @ManyToMany(mappedBy = "owner", fetch = FetchType.LAZY,
+  @ManyToMany(mappedBy = "ownerSet", fetch = FetchType.LAZY,
     cascade = [CascadeType.PERSIST, CascadeType.MERGE])
   @JsonIgnore
   open var animalSet: MutableSet<Animal>? = null

@@ -9,15 +9,20 @@ import java.time.LocalDate
 class OwnerMapper {
 
   fun toOwner(ownerDto: OwnerDto): Owner {
-    val day = ownerDto.day
-    val month = ownerDto.month
-    val year = ownerDto.year
+
     return Owner(
       null,
       ownerDto.gender,
       ownerDto.lastname,
       ownerDto.firstname,
-      LocalDate.of(year, month, day)
+      toBirthdate(ownerDto)
     )
+  }
+
+  fun toBirthdate(ownerDto: OwnerDto): LocalDate {
+    val day = ownerDto.day
+    val month = ownerDto.month
+    val year = ownerDto.year
+    return LocalDate.of(year, month, day)
   }
 }
