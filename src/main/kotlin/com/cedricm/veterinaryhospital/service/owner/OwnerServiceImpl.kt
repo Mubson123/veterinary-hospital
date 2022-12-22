@@ -6,15 +6,15 @@ import com.cedricm.veterinaryhospital.mapper.OwnerMapper
 import com.cedricm.veterinaryhospital.repository.AddressRepository
 import com.cedricm.veterinaryhospital.repository.AnimalRepository
 import com.cedricm.veterinaryhospital.repository.OwnerRepository
+import lombok.RequiredArgsConstructor
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
+@RequiredArgsConstructor
 class OwnerServiceImpl: OwnerService {
   @Autowired
   final lateinit var ownerRepository: OwnerRepository
-  @Autowired
-  final lateinit var animalRepository: AnimalRepository
   @Autowired
   final lateinit var addressRepository: AddressRepository
   @Autowired
@@ -23,6 +23,12 @@ class OwnerServiceImpl: OwnerService {
 
   override fun findAllOwners(): List<Owner> {
     return ownerRepository.findAll()
+  }
+
+  override fun findOwnerById(id: String): Owner {
+    return ownerRepository
+      .findOwnerById(id)
+      .orElseThrow { RuntimeException("Can not be updated") }
   }
 
   override fun addOwner(ownerDto: OwnerDto): Owner {

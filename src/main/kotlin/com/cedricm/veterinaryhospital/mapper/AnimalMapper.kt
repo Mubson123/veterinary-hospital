@@ -24,4 +24,11 @@ class AnimalMapper {
       animalDto.owner,
     )
   }
+
+  fun toBirthdate(animalDto: AnimalDto): LocalDate {
+    val day = animalDto.day
+    val month = animalDto.month
+    val year = animalDto.year
+    return LocalDate.of(year, month, day)
+  }
 }

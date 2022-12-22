@@ -11,28 +11,29 @@ import java.util.Date
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "animal")
+@Table(name = "Animal")
 open class Animal (
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO,
     generator = "system-uuid")
   @GenericGenerator(name = "system-uuid", strategy = "uuid")
   open var id: String? = null,
-  @Column
+  @Column(name = "animal_name")
   open var name: String? = null,
-  @Column
+  @Column(name = "animal_race")
   open var race: String? = null,
-  @Column
+  @Column(name = "race_type")
   open var type: String? = null,
-  @Column
+  @Column(name = "animal_sex")
   open var gender: Gender? = null,
-  @Column
+  @Column(name = "animal_color")
   open var color: String? = null,
   @Column
   open var symptoms: String? = null,
-  @Column
+  @Column(name = "animal_birthdate")
   open var birthdate: LocalDate? = null,
-  @ManyToMany(fetch = FetchType.LAZY, cascade = [CascadeType.PERSIST, CascadeType.MERGE])
+  @ManyToMany(fetch = FetchType.LAZY,
+    cascade = [CascadeType.PERSIST, CascadeType.MERGE])
   open var ownerSet: MutableSet<Owner>? = mutableSetOf(),
 ) {
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
