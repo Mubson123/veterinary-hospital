@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service
 
 @Service
 @RequiredArgsConstructor
-class AnimalServiceImpl: AnimalService {
+class AnimalServiceImpl : AnimalService {
   @Autowired
   lateinit var animalRepository: AnimalRepository
   @Autowired
@@ -35,8 +35,7 @@ class AnimalServiceImpl: AnimalService {
   }
 
   override fun updateAnimal(id: String, animalDto: AnimalDto): Animal {
-    val animal = animalRepository
-      .findAnimalById(id)
+    val animal = animalRepository.findAnimalById(id)
       .orElseThrow { RuntimeException("Can not be updated") }
     animal.name = animalDto.name
     animal.race = animalDto.race
