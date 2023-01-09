@@ -18,23 +18,23 @@ open class Animal (
     generator = "system-uuid")
   @GenericGenerator(name = "system-uuid", strategy = "uuid")
   open var id: String? = null,
-  @Column(name = "animal_name")
+  @Column
   open var name: String? = null,
-  @Column(name = "animal_race")
+  @Column
   open var race: String? = null,
-  @Column(name = "race_type")
-  open var type: String? = null,
-  @Column(name = "animal_sex")
+  @Column
+  open var breed: String? = null,
+  @Column
   open var gender: Gender? = null,
-  @Column(name = "animal_color")
+  @Column
   open var color: String? = null,
   @Column
   open var symptoms: String? = null,
-  @Column(name = "animal_birthdate")
+  @Column
   open var birthdate: LocalDate? = null,
   @ManyToMany(fetch = FetchType.LAZY,
     cascade = [CascadeType.PERSIST, CascadeType.MERGE])
-  open var ownerSet: MutableSet<Owner>? = mutableSetOf(),
+  open var personSet: MutableSet<Person>? = mutableSetOf(),
 ) {
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
   open var lastRegistration: Date = Date()

@@ -1,7 +1,7 @@
 package com.cedricm.veterinaryhospital.entity.dto
 
 import com.cedricm.veterinaryhospital.entity.Gender
-import com.cedricm.veterinaryhospital.entity.Owner
+import com.cedricm.veterinaryhospital.entity.Person
 
 class AnimalDto (
   var name: String,
@@ -13,5 +13,5 @@ class AnimalDto (
   var day: Int,
   var month: Int,
   var year: Int,
-  var owner: MutableSet<Owner>? = null,
+  var person: MutableSet<Person>? = null,
 )

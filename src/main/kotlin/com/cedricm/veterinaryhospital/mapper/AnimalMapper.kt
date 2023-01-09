@@ -2,7 +2,6 @@ package com.cedricm.veterinaryhospital.mapper
 
 import com.cedricm.veterinaryhospital.entity.Animal
 import com.cedricm.veterinaryhospital.entity.dto.AnimalDto
-import lombok.Getter
 import org.springframework.stereotype.Component
 import java.time.LocalDate
 
@@ -22,7 +21,7 @@ class AnimalMapper {
       animalDto.color,
       animalDto.symptoms,
       LocalDate.of(year, month, day),
-      animalDto.owner,
+      animalDto.person,
     )
   }
 

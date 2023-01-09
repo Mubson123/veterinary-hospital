@@ -22,5 +22,5 @@ open class Address (
   @Column
   open var city: String? = null,
   @OneToOne(cascade = [CascadeType.ALL])
-  open var owner: Owner? = null,
+  open var person: Person? = null,
 )

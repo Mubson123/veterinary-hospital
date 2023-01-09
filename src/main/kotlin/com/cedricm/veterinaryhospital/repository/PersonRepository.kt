@@ -1,6 +1,6 @@
 package com.cedricm.veterinaryhospital.repository
 
-import com.cedricm.veterinaryhospital.entity.Owner
+import com.cedricm.veterinaryhospital.entity.Person
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Modifying
 import org.springframework.data.jpa.repository.Query
@@ -11,10 +11,10 @@ import java.util.*
 
 @Repository
 @Transactional
-interface OwnerRepository : JpaRepository<Owner, String> {
-  @Query("SELECT o FROM Owner o WHERE o.id=:id")
-  fun findOwnerById(@Param("id") id: String): Optional<Owner>
+interface PersonRepository : JpaRepository<Person, String> {
+  @Query("SELECT p FROM Person p WHERE p.id=:id")
+  fun findOwnerById(@Param("id") id: String): Optional<Person>
   @Modifying
-  @Query("DELETE FROM Owner o WHERE o.id=:id")
+  @Query("DELETE FROM Person p WHERE p.id=:id")
   fun deleteByOwnerId(@Param("id") id: String): Optional<Void>
 }

@@ -1,10 +1,8 @@
 package com.cedricm.veterinaryhospital.service.animal
 
 import com.cedricm.veterinaryhospital.entity.Animal
-import com.cedricm.veterinaryhospital.entity.Owner
 import com.cedricm.veterinaryhospital.entity.dto.AnimalDto
 import com.cedricm.veterinaryhospital.mapper.AnimalMapper
-import com.cedricm.veterinaryhospital.mapper.OwnerMapper
 import com.cedricm.veterinaryhospital.repository.AnimalRepository
 import lombok.RequiredArgsConstructor
 import org.springframework.beans.factory.annotation.Autowired
@@ -40,7 +38,7 @@ class AnimalServiceImpl : AnimalService {
       .orElseThrow { RuntimeException("Can not be updated") }
     animal.name = animalDto.name
     animal.race = animalDto.race
-    animal.type = animalDto.type
+    animal.breed = animalDto.type
     animal.gender = animalDto.gender
     animal.color = animalDto.color
     animal.symptoms = animalDto.symptoms
