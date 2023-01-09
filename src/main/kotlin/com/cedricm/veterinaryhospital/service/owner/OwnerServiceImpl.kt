@@ -4,7 +4,6 @@ import com.cedricm.veterinaryhospital.entity.Owner
 import com.cedricm.veterinaryhospital.entity.dto.OwnerDto
 import com.cedricm.veterinaryhospital.mapper.OwnerMapper
 import com.cedricm.veterinaryhospital.repository.AddressRepository
-import com.cedricm.veterinaryhospital.repository.AnimalRepository
 import com.cedricm.veterinaryhospital.repository.OwnerRepository
 import lombok.RequiredArgsConstructor
 import org.springframework.beans.factory.annotation.Autowired
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Service
 
 @Service
 @RequiredArgsConstructor
-class OwnerServiceImpl: OwnerService {
+class OwnerServiceImpl : OwnerService {
   @Autowired
   final lateinit var ownerRepository: OwnerRepository
   @Autowired
