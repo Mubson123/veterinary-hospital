@@ -10,8 +10,8 @@ import java.time.LocalDate
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "owner")
-open class Owner (
+@Table(name = "person")
+open class Person (
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO,
     generator = "system-uuid")
@@ -27,12 +27,12 @@ open class Owner (
   open var birthdate: LocalDate? = null,
   ) {
 
-  @ManyToMany(mappedBy = "ownerSet", fetch = FetchType.LAZY,
+  @ManyToMany(mappedBy = "personSet", fetch = FetchType.LAZY,
     cascade = [CascadeType.PERSIST, CascadeType.MERGE])
   @JsonIgnore
   open var animalSet: MutableSet<Animal>? = null
 
-  @OneToOne(mappedBy = "owner", cascade = [CascadeType.ALL])
+  @OneToOne(mappedBy = "person", cascade = [CascadeType.ALL])
   @JsonIgnore
   open var address: Address? = null
 }

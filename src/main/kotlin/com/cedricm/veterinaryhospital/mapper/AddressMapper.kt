@@ -13,7 +13,7 @@ class AddressMapper {
       addressDto.streetAndHouseNumber,
       addressDto.postalCode,
       addressDto.city,
-      addressDto.owner
+      addressDto.person
     )
   }
 }

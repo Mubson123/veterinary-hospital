@@ -1,7 +1,7 @@
 package com.cedricm.veterinaryhospital.repository
 
 import com.cedricm.veterinaryhospital.entity.Address
-import com.cedricm.veterinaryhospital.entity.Owner
+import com.cedricm.veterinaryhospital.entity.Person
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Modifying
 import org.springframework.data.jpa.repository.Query
@@ -14,6 +14,6 @@ import java.util.*
 @Transactional
 interface AddressRepository : JpaRepository<Address, String> {
   @Modifying
-  @Query("DELETE FROM Address a WHERE a.owner=:owner")
-  fun deleteByOwner(@Param("owner") owner: Owner): Optional<Void>
+  @Query("DELETE FROM Address a WHERE a.person=:owner")
+  fun deleteByOwner(@Param("owner") person: Person): Optional<Void>
 }

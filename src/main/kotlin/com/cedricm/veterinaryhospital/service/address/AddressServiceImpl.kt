@@ -14,7 +14,7 @@ class AddressServiceImpl : AddressService {
   @Autowired
   lateinit var addressRepository: AddressRepository
   @Autowired
-  val addressMapper = AddressMapper()
+  lateinit var addressMapper : AddressMapper
 
   override fun findAllAddress(): List<Address> {
     return addressRepository.findAll()
@@ -22,7 +22,7 @@ class AddressServiceImpl : AddressService {
 
   override fun findAddressById(id: String): Address {
     return addressRepository.findById(id)
-      .orElseThrow { RuntimeException("Can not be found") }
+      .orElseThrow { RuntimeException("Given address can not be found") }
   }
 
   override fun addAddress(addressDto: AddressDto): Address {
@@ -32,9 +32,9 @@ class AddressServiceImpl : AddressService {
 
   override fun updateAddress(id: String, addressDto: AddressDto): Address {
     val address = addressRepository.findById(id)
-      .orElseThrow { RuntimeException("Can not be found") }
+      .orElseThrow { RuntimeException("Given address can not be found") }
     address.city = addressDto.city
-    address.owner = addressDto.owner
+    address.person = addressDto.person
     address.postalCode = addressDto.postalCode
     address.streetAndHouseNumber = addressDto.streetAndHouseNumber
     return addressRepository.save(address)
@@ -42,6 +42,6 @@ class AddressServiceImpl : AddressService {
 
   override fun deleteAddress(id: String) {
     addressRepository.findById(id)
-      .orElseThrow { RuntimeException("Can not be found") }
+      .orElseThrow { RuntimeException("Given address can not be found") }
   }
 }
