@@ -2,6 +2,7 @@ package com.cedricm.veterinaryhospital.mapper
 
 import com.cedricm.veterinaryhospital.entity.Animal
 import com.cedricm.veterinaryhospital.entity.dto.AnimalDto
+import lombok.Getter
 import org.springframework.stereotype.Component
 import java.time.LocalDate
 

@@ -16,7 +16,8 @@ class AnimalServiceImpl: AnimalService {
   @Autowired
   lateinit var animalRepository: AnimalRepository
   @Autowired
-  val animalMapper = AnimalMapper()
+  lateinit var animalMapper: AnimalMapper
+
 
   override fun findAllAnimals(): List<Animal> {
     return animalRepository.findAll()
