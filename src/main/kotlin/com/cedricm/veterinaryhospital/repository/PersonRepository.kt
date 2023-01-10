@@ -13,8 +13,8 @@ import java.util.*
 @Transactional
 interface PersonRepository : JpaRepository<Person, String> {
   @Query("SELECT p FROM Person p WHERE p.id=:id")
-  fun findOwnerById(@Param("id") id: String): Optional<Person>
+  fun findPersonById(@Param("id") id: String): Optional<Person>
   @Modifying
   @Query("DELETE FROM Person p WHERE p.id=:id")
-  fun deleteByOwnerId(@Param("id") id: String): Optional<Void>
+  fun deleteByPersonId(@Param("id") id: String): Optional<Void>
 }

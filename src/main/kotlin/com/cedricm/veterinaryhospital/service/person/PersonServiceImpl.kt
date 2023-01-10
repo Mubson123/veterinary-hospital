@@ -5,20 +5,15 @@ import com.cedricm.veterinaryhospital.entity.dto.PersonDto
 import com.cedricm.veterinaryhospital.mapper.PersonMapper
 import com.cedricm.veterinaryhospital.repository.AddressRepository
 import com.cedricm.veterinaryhospital.repository.PersonRepository
-import lombok.RequiredArgsConstructor
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-@RequiredArgsConstructor
-class PersonServiceImpl : PersonService {
-  @Autowired
-  final lateinit var personRepository: PersonRepository
-  @Autowired
-  final lateinit var addressRepository: AddressRepository
-  @Autowired
-  lateinit var personMapper : PersonMapper
-
+class PersonServiceImpl @Autowired constructor(
+  private val personRepository: PersonRepository,
+  private val addressRepository: AddressRepository,
+  private val personMapper: PersonMapper
+) : PersonService {
 
   override fun findAllPersons(): List<Person> {
     return personRepository.findAll()
@@ -26,7 +21,7 @@ class PersonServiceImpl : PersonService {
 
   override fun findPersonById(id: String): Person {
     return personRepository
-      .findOwnerById(id)
+      .findPersonById(id)
       .orElseThrow { RuntimeException("Given person can not be found") }
   }
 
@@ -37,8 +32,8 @@ class PersonServiceImpl : PersonService {
 
   override fun updatePerson(id: String, personDto: PersonDto): Person {
     val owner = personRepository
-      .findOwnerById(id)
-      .orElseThrow{ RuntimeException("Given person can not be found") }
+      .findPersonById(id)
+      .orElseThrow { RuntimeException("Given person can not be found") }
     owner.gender = personDto.gender
     owner.lastname = personDto.lastname
     owner.firstname = personDto.firstname
@@ -48,9 +43,9 @@ class PersonServiceImpl : PersonService {
 
   override fun deletePerson(id: String) {
     val owner = personRepository
-      .findOwnerById(id)
-      .orElseThrow{ RuntimeException("Given person can not be found") }
-    addressRepository.deleteByOwner(owner)
-    personRepository.deleteByOwnerId(id)
+      .findPersonById(id)
+      .orElseThrow { RuntimeException("Given person can not be found") }
+    addressRepository.deleteByPerson(owner)
+    personRepository.deleteByPersonId(id)
   }
 }

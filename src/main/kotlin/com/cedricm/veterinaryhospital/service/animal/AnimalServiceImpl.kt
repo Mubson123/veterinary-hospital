@@ -9,13 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-@RequiredArgsConstructor
-class AnimalServiceImpl : AnimalService {
-  @Autowired
-  lateinit var animalRepository: AnimalRepository
-  @Autowired
-  lateinit var animalMapper: AnimalMapper
-
+class AnimalServiceImpl @Autowired constructor(
+  private val animalRepository: AnimalRepository,
+  private val animalMapper: AnimalMapper
+) : AnimalService {
 
   override fun findAllAnimals(): List<Animal> {
     return animalRepository.findAll()

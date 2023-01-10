@@ -4,19 +4,16 @@ import com.cedricm.veterinaryhospital.entity.Address
 import com.cedricm.veterinaryhospital.entity.dto.AddressDto
 import com.cedricm.veterinaryhospital.mapper.AddressMapper
 import com.cedricm.veterinaryhospital.repository.AddressRepository
-import lombok.RequiredArgsConstructor
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-@RequiredArgsConstructor
-class AddressServiceImpl : AddressService {
-  @Autowired
-  lateinit var addressRepository: AddressRepository
-  @Autowired
-  lateinit var addressMapper : AddressMapper
+class AddressServiceImpl @Autowired constructor(
+  private val addressRepository: AddressRepository,
+  private val addressMapper: AddressMapper
+) : AddressService {
 
-  override fun findAllAddress(): List<Address> {
+  override fun findAllAddresses(): List<Address> {
     return addressRepository.findAll()
   }
 
