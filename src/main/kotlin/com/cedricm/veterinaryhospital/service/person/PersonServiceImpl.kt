@@ -2,6 +2,7 @@ package com.cedricm.veterinaryhospital.service.person
 
 import com.cedricm.veterinaryhospital.entity.Person
 import com.cedricm.veterinaryhospital.entity.dto.PersonDto
+import com.cedricm.veterinaryhospital.exception.ResourceNotFoundException
 import com.cedricm.veterinaryhospital.mapper.PersonMapper
 import com.cedricm.veterinaryhospital.repository.PersonRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -20,7 +21,7 @@ class PersonServiceImpl @Autowired constructor(
   override fun findPersonById(id: String): Person {
     return personRepository
       .findPersonById(id)
-      .orElseThrow { RuntimeException("Given person can not be found") }
+      .orElseThrow { ResourceNotFoundException("Given person can not be found") }
   }
 
   override fun addPerson(personDto: PersonDto): Person {
@@ -31,7 +32,7 @@ class PersonServiceImpl @Autowired constructor(
   override fun updatePerson(id: String, personDto: PersonDto): Person {
     val person = personRepository
       .findPersonById(id)
-      .orElseThrow { RuntimeException("Given person can not be found") }
+      .orElseThrow { ResourceNotFoundException("Given person can not be found") }
     person.title = personDto.title
     person.lastname = personDto.lastname
     person.firstname = personDto.firstname
@@ -42,7 +43,7 @@ class PersonServiceImpl @Autowired constructor(
   override fun deletePerson(id: String) {
     val person = personRepository
       .findPersonById(id)
-      .orElseThrow { RuntimeException("Given person can not be found") }
+      .orElseThrow { ResourceNotFoundException("Given person can not be found") }
     personRepository.delete(person)
   }
 }

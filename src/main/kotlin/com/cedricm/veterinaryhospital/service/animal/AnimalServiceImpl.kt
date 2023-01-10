@@ -2,6 +2,7 @@ package com.cedricm.veterinaryhospital.service.animal
 
 import com.cedricm.veterinaryhospital.entity.Animal
 import com.cedricm.veterinaryhospital.entity.dto.AnimalDto
+import com.cedricm.veterinaryhospital.exception.ResourceNotFoundException
 import com.cedricm.veterinaryhospital.mapper.AnimalMapper
 import com.cedricm.veterinaryhospital.repository.AnimalRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -20,7 +21,7 @@ class AnimalServiceImpl @Autowired constructor(
   override fun findAnimalById(id: String): Animal {
     return animalRepository
       .findAnimalById(id)
-      .orElseThrow { RuntimeException("Can not be found") }
+      .orElseThrow { ResourceNotFoundException("Can not be found") }
 
   }
 
@@ -31,7 +32,7 @@ class AnimalServiceImpl @Autowired constructor(
 
   override fun updateAnimal(id: String, animalDto: AnimalDto): Animal {
     val animal = animalRepository.findAnimalById(id)
-      .orElseThrow { RuntimeException("Can not be updated") }
+      .orElseThrow { ResourceNotFoundException("Can not be updated") }
     animal.name = animalDto.name
     animal.race = animalDto.race
     animal.breed = animalDto.breed
@@ -46,6 +47,6 @@ class AnimalServiceImpl @Autowired constructor(
   override fun deleteAnimal(id: String) {
     animalRepository
       .deleteByAnimalId(id)
-      .orElseThrow { RuntimeException("Can not be deleted") }
+      .orElseThrow { ResourceNotFoundException("Can not be deleted") }
   }
 }
