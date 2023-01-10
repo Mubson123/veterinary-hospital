@@ -1,7 +1,7 @@
 package com.cedricm.veterinaryhospital.entity
 
-enum class Gender {
-  Male,
-  Female,
+enum class Title {
+  Mr,
+  Ms,
   Unknown;
 }

@@ -12,7 +12,7 @@ import java.util.Date
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "Animal")
-open class Animal (
+class Animal (
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO,
     generator = "system-uuid")
@@ -37,5 +37,5 @@ open class Animal (
   open var personSet: MutableSet<Person>? = mutableSetOf(),
 ) {
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
-  open var lastRegistration: Date = Date()
+  var lastRegistration: Date = Date()
 }

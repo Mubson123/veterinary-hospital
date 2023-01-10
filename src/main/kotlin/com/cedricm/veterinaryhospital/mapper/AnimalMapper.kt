@@ -21,7 +21,7 @@ class AnimalMapper {
       animalDto.color,
       animalDto.symptoms,
       LocalDate.of(year, month, day),
-      animalDto.person,
+      animalDto.animalOwners,
     )
   }
 
