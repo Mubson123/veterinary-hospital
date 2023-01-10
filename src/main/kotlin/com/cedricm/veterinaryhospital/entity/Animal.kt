@@ -34,7 +34,7 @@ class Animal (
   open var birthdate: LocalDate? = null,
   @ManyToMany(fetch = FetchType.LAZY,
     cascade = [CascadeType.PERSIST, CascadeType.MERGE])
-  open var personSet: MutableSet<Person>? = mutableSetOf(),
+  open var animalOwners: MutableSet<Person>? = mutableSetOf(),
 ) {
   @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
   var lastRegistration: Date = Date()

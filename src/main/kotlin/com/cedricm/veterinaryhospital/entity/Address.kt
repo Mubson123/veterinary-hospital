@@ -11,7 +11,7 @@ class Address (
   @Column
   open var streetAndHouseNumber: String? = null,
   @Column
-  open var postalCode: String? = null,
+  open var postalCode: Int? = null,
   @Column
   open var city: String? = null,
   @Column
