@@ -13,5 +13,5 @@ class AnimalDto (
   var day: Int,
   var month: Int,
   var year: Int,
-  var person: MutableSet<Person>? = null,
+  var animalOwners: MutableSet<Person>? = null,
 )

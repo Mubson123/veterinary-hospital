@@ -3,7 +3,6 @@ package com.cedricm.veterinaryhospital.service.person
 import com.cedricm.veterinaryhospital.entity.Person
 import com.cedricm.veterinaryhospital.entity.dto.PersonDto
 import com.cedricm.veterinaryhospital.mapper.PersonMapper
-import com.cedricm.veterinaryhospital.repository.AddressRepository
 import com.cedricm.veterinaryhospital.repository.PersonRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service
 @Service
 class PersonServiceImpl @Autowired constructor(
   private val personRepository: PersonRepository,
-  private val addressRepository: AddressRepository,
   private val personMapper: PersonMapper
 ) : PersonService {
 
@@ -34,7 +32,7 @@ class PersonServiceImpl @Autowired constructor(
     val owner = personRepository
       .findPersonById(id)
       .orElseThrow { RuntimeException("Given person can not be found") }
-    owner.gender = personDto.gender
+    owner.title = personDto.title
     owner.lastname = personDto.lastname
     owner.firstname = personDto.firstname
     owner.birthdate = personMapper.toBirthdate(personDto)
@@ -42,10 +40,9 @@ class PersonServiceImpl @Autowired constructor(
   }
 
   override fun deletePerson(id: String) {
-    val owner = personRepository
+    val person = personRepository
       .findPersonById(id)
       .orElseThrow { RuntimeException("Given person can not be found") }
-    addressRepository.deleteByPerson(owner)
-    personRepository.deleteByPersonId(id)
+    personRepository.delete(person)
   }
 }

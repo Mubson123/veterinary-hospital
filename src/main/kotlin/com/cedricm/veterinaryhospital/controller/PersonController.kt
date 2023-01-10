@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("api/veterinary")
+@RequestMapping("api/veterinary/persons")
 class PersonController {
   @Autowired
   private final lateinit var personServiceImpl: PersonServiceImpl
