@@ -12,6 +12,8 @@ import java.util.*
 @Repository
 @Transactional
 interface PersonRepository : JpaRepository<Person, String> {
+  @Query("SELECT p FROM Person p WHERE p.email=:email")
+  fun findPersonByEmail(@Param("email") email: String): Optional<Person>
   @Query("SELECT p FROM Person p WHERE p.id=:id")
   fun findPersonById(@Param("id") id: String): Optional<Person>
   @Modifying

@@ -35,7 +35,7 @@ class Person (
   open var address: Address? = null
   ) {
 
-  @ManyToMany(mappedBy = "personSet", fetch = FetchType.LAZY,
+  @ManyToMany(mappedBy = "animalOwners", fetch = FetchType.LAZY,
     cascade = [CascadeType.PERSIST, CascadeType.MERGE])
   @JsonIgnore
   var animalSet: MutableSet<Animal>? = null

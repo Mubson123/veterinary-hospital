@@ -29,14 +29,14 @@ class PersonServiceImpl @Autowired constructor(
   }
 
   override fun updatePerson(id: String, personDto: PersonDto): Person {
-    val owner = personRepository
+    val person = personRepository
       .findPersonById(id)
       .orElseThrow { RuntimeException("Given person can not be found") }
-    owner.title = personDto.title
-    owner.lastname = personDto.lastname
-    owner.firstname = personDto.firstname
-    owner.birthdate = personMapper.toBirthdate(personDto)
-    return personRepository.save(owner)
+    person.title = personDto.title
+    person.lastname = personDto.lastname
+    person.firstname = personDto.firstname
+    person.birthdate = personMapper.toBirthdate(personDto)
+    return personRepository.save(person)
   }
 
   override fun deletePerson(id: String) {

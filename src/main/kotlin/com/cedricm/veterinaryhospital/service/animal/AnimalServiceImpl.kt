@@ -4,7 +4,6 @@ import com.cedricm.veterinaryhospital.entity.Animal
 import com.cedricm.veterinaryhospital.entity.dto.AnimalDto
 import com.cedricm.veterinaryhospital.mapper.AnimalMapper
 import com.cedricm.veterinaryhospital.repository.AnimalRepository
-import lombok.RequiredArgsConstructor
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -35,11 +34,12 @@ class AnimalServiceImpl @Autowired constructor(
       .orElseThrow { RuntimeException("Can not be updated") }
     animal.name = animalDto.name
     animal.race = animalDto.race
-    animal.breed = animalDto.type
+    animal.breed = animalDto.breed
     animal.gender = animalDto.gender
     animal.color = animalDto.color
     animal.symptoms = animalDto.symptoms
     animal.birthdate = animalMapper.toBirthdate(animalDto)
+    animal.animalOwners = animalMapper.toOwners(animalDto.animalOwnerEmails)
     return animalRepository.save(animal)
   }
 

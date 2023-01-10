@@ -12,7 +12,7 @@ class PersonDto (
   var phoneNumber: Number,
   var email : String,
   var streetAndHouseNumber: String,
-  var postalCode: String,
+  var postalCode: Int,
   var city: String,
   var country: String = "Germany",
 )
