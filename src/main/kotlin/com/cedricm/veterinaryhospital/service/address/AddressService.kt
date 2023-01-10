@@ -5,7 +5,7 @@ import com.cedricm.veterinaryhospital.entity.dto.AddressDto
 
 interface AddressService {
 
-  fun findAllAddress(): List<Address>
+  fun findAllAddresses(): List<Address>
 
   fun findAddressById(id: String): Address
 

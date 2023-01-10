@@ -14,6 +14,6 @@ import java.util.*
 @Transactional
 interface AddressRepository : JpaRepository<Address, String> {
   @Modifying
-  @Query("DELETE FROM Address a WHERE a.person=:owner")
-  fun deleteByOwner(@Param("owner") person: Person): Optional<Void>
+  @Query("DELETE FROM Address a WHERE a.person=:person")
+  fun deleteByPerson(@Param("person") person: Person): Optional<Void>
 }
